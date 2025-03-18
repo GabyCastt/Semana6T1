@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Roles_Estructuras_Control.Models.DetalleFacturaModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<h1>Index</h1>
+
+
+<script>
+   /* CODIGO JAVASCRIPT*/
+   $().ready(
+    
+    ()=>{
+        var html ="<option value=0>Seleccione una opción</option>"
+         $.get("../../detallefactura/ListaClientes",(listaClientes)=>{
+         $.each(listaClientes,(index,valor)=>{
+        html += `<option value="$(valor.id})">${valor.nombre}</option>`
+         })
+            $("#clientes").html(html)
+         })
+    }
+    );
+
+    /* CÓDIGO JQUERY
+    
+    document.addEventListener("DOMContentLoaded",async()=>{
+        const ClientesSelect = document.getElementById("clientes")
+         var html ="<option value=0>Seleccione una opción</option>"
+          const listaClientes = await fetch("../../detallefactura/ListaClientes")
+          try{
+               if(!listaClientes.ok){ throw new Error("Error al cargar los clientes")
+            listaClientes = await listaClientes.json();
+                listaClientes.forEach((cliente)=>{
+                  html += `<option value="${cliente.id}">${cliente.nombre}</option>`
+                })
+                  ClientesSelect.innerHTML = html
+          }catch(ex){
+          }          
+    })  */
+</script>
+
+
+<div class="row-cols-2">
+    <div class="col-md-6">
+        <label class="control-label">Clientes </label>
+        <select class="form-select" id="clientes">
+
+        </select>
+    </div>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-responsive table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductoModels.NombreProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacturaModel.NumeroFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockModels.FechaFabricacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductoModels.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacturaModel.NumeroFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockModels.FechaFabricacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

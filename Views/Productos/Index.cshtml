@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Roles_Estructuras_Control.Models.ProductoModels>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de Productos</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo Producto</a>
+</p>
+
+<!-- Select dinámico para cargar productos usando JavaScript -->
+<div class="row-cols-2 mb-4">
+    <div class="col-md-6">
+        <label class="control-label">Seleccione un Producto</label>
+        <select class="form-select" id="productos">
+            <option value="0">Seleccione un producto</option>
+        </select>
+    </div>
+</div>
+
+<!-- Tabla de productos -->
+<table class="table table-responsive table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>@Html.DisplayNameFor(model => model.NombreProducto)</th>
+            <th>@Html.DisplayNameFor(model => model.Presentacion)</th>
+            <th>@Html.DisplayNameFor(model => model.CodigoBarras)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int contador = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@contador</td>
+                <td>@Html.DisplayFor(modelItem => item.NombreProducto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Presentacion)</td>
+                <td>@Html.DisplayFor(modelItem => item.CodigoBarras)</td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-outline-warning" asp-route-id="@item.ID">Editar</a> |
+                    <a asp-action="Details" class="btn btn-outline-info" asp-route-id="@item.ID">Detalles</a> |
+                    <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.ID">Eliminar</a>
+                </td>
+            </tr>
+            contador++;
+        }
+    </tbody>
+</table>
+<!-- JQuery y Script para cargar productos en el Select -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        let html = '<option value="0">Seleccione un producto</option>';
+
+        $.get("@Url.Action("ListaProductos", "Productos")", function (productos) {
+            $.each(productos, function (index, producto) {
+                html += `<option value="${producto.id}">${producto.nombreProducto}</option>`;
+            });
+            $("#productos").html(html);
+        });
+
+        // Evento para mostrar el producto seleccionado (opcional)
+        $("#productos").change(function () {
+            var selectedText = $("#productos option:selected").text();
+            var selectedValue = $("#productos").val();
+            if (selectedValue != "0") {
+                alert("Producto seleccionado: " + selectedText);
+            }
+        });
+    });
+</script>
