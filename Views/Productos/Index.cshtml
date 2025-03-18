@@ -66,14 +66,5 @@
             });
             $("#productos").html(html);
         });
-
-        // Evento para mostrar el producto seleccionado (opcional)
-        $("#productos").change(function () {
-            var selectedText = $("#productos option:selected").text();
-            var selectedValue = $("#productos").val();
-            if (selectedValue != "0") {
-                alert("Producto seleccionado: " + selectedText);
-            }
-        });
     });
 </script>

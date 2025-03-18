@@ -18,8 +18,6 @@ namespace Roles_Estructuras_Control.Controllers
         {
             _context = context;
         }
-
-        // ✅ NUEVA ACCIÓN PARA OBTENER PRODUCTOS EN JSON
         [HttpGet]
         public async Task<IActionResult> ListaProductos()
         {
