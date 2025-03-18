@@ -4,14 +4,28 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <h1>Lista de Productos</h1>
+
+<script>
+    $(document).ready(function () {
+        let html = '<option value="0">Seleccione un producto</option>';
+
+        $.get("@Url.Action("ListaProductos", "Productos")", function (productos) {
+            $.each(productos, function (index, producto) {
+                html += `<option value="${producto.id}">${producto.nombreProducto}</option>`;
+            });
+            $("#productos").html(html);
+        });
+    });
+</script>
+
 
 <p>
     <a asp-action="Create">Crear Nuevo Producto</a>
 </p>
 
-<!-- Select dinámico para cargar productos usando JavaScript -->
 <div class="row-cols-2 mb-4">
     <div class="col-md-6">
         <label class="control-label">Seleccione un Producto</label>
@@ -21,7 +35,6 @@
     </div>
 </div>
 
-<!-- Tabla de productos -->
 <table class="table table-responsive table-bordered table-striped">
     <thead>
         <tr>
@@ -53,18 +66,3 @@
         }
     </tbody>
 </table>
-<!-- JQuery y Script para cargar productos en el Select -->
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        let html = '<option value="0">Seleccione un producto</option>';
-
-        $.get("@Url.Action("ListaProductos", "Productos")", function (productos) {
-            $.each(productos, function (index, producto) {
-                html += `<option value="${producto.id}">${producto.nombreProducto}</option>`;
-            });
-            $("#productos").html(html);
-        });
-    });
-</script>
