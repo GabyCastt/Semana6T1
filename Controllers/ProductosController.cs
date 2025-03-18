@@ -34,6 +34,12 @@ namespace Roles_Estructuras_Control.Controllers
             return View(await _context.Productos.ToListAsync());
         }
 
+        public List<ProductoModels> listaProductos()
+        {
+            return _context.Productos.ToList();
+        }
+
+
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {

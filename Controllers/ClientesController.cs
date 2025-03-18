@@ -25,6 +25,16 @@ namespace Roles_Estructuras_Control.Controllers
             return View(await _context.Clientes.ToListAsync());
         }
 
+        public List<ClientesModel> listaClientes()
+        {
+            return _context.Clientes.ToList();
+        }
+
+        public ClientesModel unCliente(int id)
+        {
+            return _context.Clientes.FirstOrDefault(cliente => cliente.Id == id);
+        }
+
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {

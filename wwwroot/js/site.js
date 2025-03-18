@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$().ready(
 
-// Write your JavaScript code.
+    () => {
+        detallefactura()
+
+    }
+
+);
+
+var detallefactura = () => {
+    var leerClientes = new DetalleFactura()
+    leerClientes.listaClientes()
+}
+var unCliente = () => {
+    var id = $('#listaClientes').val()
+    var uncliente = new DetalleFactura()
+    uncliente.unCliente(id)
+}
+var nuevoCliente = () => {
+    var nuevoCliente = new DetalleFactura()
+    nuevoCliente.nuevoCliente()
+}
+var limpiarcajas = () => {
+    var limpiarcajas = new DetalleFactura()
+    limpiarcajas.limpiarCampos()
+}

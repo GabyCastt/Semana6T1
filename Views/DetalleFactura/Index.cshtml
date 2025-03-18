@@ -4,52 +4,53 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 
 <h1>Index</h1>
 
 
-<script>
-   /* CODIGO JAVASCRIPT*/
-   $().ready(
-    
-    ()=>{
-        var html ="<option value=0>Seleccione una opción</option>"
-         $.get("../../detallefactura/ListaClientes",(listaClientes)=>{
-         $.each(listaClientes,(index,valor)=>{
-        html += `<option value="$(valor.id})">${valor.nombre}</option>`
-         })
-            $("#clientes").html(html)
-         })
-    }
-    );
-
-    /* CÓDIGO JQUERY
-    
-    document.addEventListener("DOMContentLoaded",async()=>{
-        const ClientesSelect = document.getElementById("clientes")
-         var html ="<option value=0>Seleccione una opción</option>"
-          const listaClientes = await fetch("../../detallefactura/ListaClientes")
-          try{
-               if(!listaClientes.ok){ throw new Error("Error al cargar los clientes")
-            listaClientes = await listaClientes.json();
-                listaClientes.forEach((cliente)=>{
-                  html += `<option value="${cliente.id}">${cliente.nombre}</option>`
-                })
-                  ClientesSelect.innerHTML = html
-          }catch(ex){
-          }          
-    })  */
-</script>
-
-
 <div class="row-cols-2">
     <div class="col-md-6">
         <label class="control-label">Clientes </label>
-        <select class="form-select" id="clientes">
+        <select class="form-select" id="listaClientes" onchange="unCliente()">
 
         </select>
+        <button onclick="nuevoCliente()"class="btn btn-outline-primary"> <i class="icon-user-plus"></i> </button>
+        <input hidden value="0" id="nuevoCliente"/>
+    </div>
+    <div class="col-md-6"><table class="table table-bordered table-responsive table-striped">
+        <tr>
+            <td><label>Nombre del Cliente</label></td>
+            <td><label>Dirección</label> </td>
+        </tr>
+        <tr>
+                <td><i class="icon-user"></i><input class="form-control" id="NombreCliente" disabled="disabled" /></td>
+                <td><i class="icon-address-book"></i><input class="form-control" id="DireccionCliente" disabled="disabled"/></td>
+        </tr>
+            <tr>
+                <td><label>Telefono</label></td>
+                <td><label>Correo Electrónico</label> </td>
+            </tr>
+            <tr>
+                <td><i class="icon-phone-hang-up"></i> <input class="form-control" id="TelefonoCliente" disabled="disabled" /></td>
+                <td><i class="icon-envelop"></i><input class="form-control" id="EmailCliente" disabled="disabled" /></td>
+            </tr>
+    </table>
+        <button onclick="limpiarcajas()" id="cancelar" class="btn btn-outline-danger">Cancelar </button>
+        <button onclick="limpiarcajas()" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#productos"Producto</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre Producto</th>
+                    <th>Cantidad</th>
+                    <th>P/U</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -104,3 +105,47 @@
 }
     </tbody>
 </table>
+
+
+<div class="modal fade" id="productos" tabindex="-1" aria-labelledby="Productos" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lista de Productos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Buscador</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="buscador" value="" class="form-control" />
+                                <button class="btn btn-outline-info" onclick="buscarProducto()">Buscar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Agregar Producto</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+

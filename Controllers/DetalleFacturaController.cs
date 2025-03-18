@@ -26,13 +26,6 @@ namespace Roles_Estructuras_Control.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-
-        public List<ClientesModel> ListaClientes() 
-        {
-            return _context.Clientes.ToList();
-        }
-
-
         // GET: DetalleFactura/Details/5
         public async Task<IActionResult> Details(int? id)
         {
