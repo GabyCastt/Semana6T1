@@ -5,40 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <h1>Index</h1>
-
 
 <div class="row-cols-2">
     <div class="col-md-6">
         <label class="control-label">Clientes </label>
-        <select class="form-select" id="listaClientes" onchange="unCliente()">
-
-        </select>
-        <button onclick="nuevoCliente()"class="btn btn-outline-primary"> <i class="icon-user-plus"></i> </button>
-        <input hidden value="0" id="nuevoCliente"/>
+        <select class="form-select" id="listaClientes" onchange="detallefactura.unCliente(this.value)"></select>
+        <button onclick="detallefactura.nuevoCliente()" class="btn btn-outline-primary"> <i class="icon-user-plus"></i> </button>
+        <input hidden value="0" id="nuevoCliente" />
     </div>
-    <div class="col-md-6"><table class="table table-bordered table-responsive table-striped">
-        <tr>
-            <td><label>Nombre del Cliente</label></td>
-            <td><label>Dirección</label> </td>
-        </tr>
-        <tr>
-                <td><i class="icon-user"></i><input class="form-control" id="NombreCliente" disabled="disabled" /></td>
-                <td><i class="icon-address-book"></i><input class="form-control" id="DireccionCliente" disabled="disabled"/></td>
-        </tr>
+
+    <div class="col-md-6">
+        <table class="table table-bordered table-responsive table-striped">
             <tr>
-                <td><label>Telefono</label></td>
+                <td><label>Nombre del Cliente</label></td>
+                <td><label>Dirección</label> </td>
+            </tr>
+            <tr>
+                <td><i class="icon-user"></i><input class="form-control" id="NombreCliente" disabled /></td>
+                <td><i class="icon-address-book"></i><input class="form-control" id="DireccionCliente" disabled /></td>
+            </tr>
+            <tr>
+                <td><label>Teléfono</label></td>
                 <td><label>Correo Electrónico</label> </td>
             </tr>
             <tr>
-                <td><i class="icon-phone-hang-up"></i> <input class="form-control" id="TelefonoCliente" disabled="disabled" /></td>
-                <td><i class="icon-envelop"></i><input class="form-control" id="EmailCliente" disabled="disabled" /></td>
+                <td><i class="icon-phone-hang-up"></i><input class="form-control" id="TelefonoCliente" disabled /></td>
+                <td><i class="icon-envelop"></i><input class="form-control" id="EmailCliente" disabled /></td>
             </tr>
-    </table>
-        <button onclick="limpiarcajas()" id="cancelar" class="btn btn-outline-danger">Cancelar </button>
-        <button onclick="limpiarcajas()" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#productos"Producto</button>
-        <table>
+        </table>
+
+        <button onclick="detallefactura.limpiarCampos()" id="cancelar" class="btn btn-outline-danger">Cancelar</button>
+        <button onclick="detallefactura.limpiarCampos(); detallefactura.listaProductos();" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#productos">Producto</button>
+
+        <!-- Productos agregados a la factura -->
+        <table class="table table-bordered" id="tablaProductos">
             <thead>
                 <tr>
                     <th>#</th>
@@ -46,106 +47,59 @@
                     <th>Cantidad</th>
                     <th>P/U</th>
                     <th>Total</th>
+                    <th>Valor Total</th>
                 </tr>
             </thead>
             <tbody>
+                <!-- Agrega los productos -->
             </tbody>
         </table>
+
+        <div>
+            <strong>Total Factura: </strong><span id="totalFactura">0.00</span>
+        </div>
     </div>
 </div>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table table-responsive table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductoModels.NombreProducto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FacturaModel.NumeroFactura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StockModels.FechaFabricacion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductoModels.NombreProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FacturaModel.NumeroFactura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StockModels.FechaFabricacion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
 
-
+<!-- Modal-->
 <div class="modal fade" id="productos" tabindex="-1" aria-labelledby="Productos" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Lista de Productos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Lista de Productos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
+
             <div class="modal-body">
                 <div class="mb-3">
-                    <table class="table table-bordered">
-                        <tr>
-                            <td>Buscador</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" id="buscador" value="" class="form-control" />
-                                <button class="btn btn-outline-info" onclick="buscarProducto()">Buscar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nombre Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Valor</th>
-                                    </tr>
-                                </thead>
-                        </tr>
-                    </table>
+                    <label>Buscador de productos</label>
+                    <input type="text" id="buscador" class="form-control" placeholder="Ingrese nombre del producto">
+                    <button onclick="detallefactura.buscarProducto()" class="btn btn-outline-primary">Buscar</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Agregar Producto</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
+                <table class="table table-bordered" id="resultadoProductos">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Se muestra los productos buscados -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
-

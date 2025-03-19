@@ -1,26 +1,26 @@
-﻿$().ready(
+﻿var detallefactura = new DetalleFactura();
 
-    () => {
-        detallefactura()
+$().ready(() => {
+    detallefactura.listaClientes(); 
+});
 
-    }
-
-);
-
-var detallefactura = () => {
-    var leerClientes = new DetalleFactura()
-    leerClientes.listaClientes()
-}
 var unCliente = () => {
-    var id = $('#listaClientes').val()
-    var uncliente = new DetalleFactura()
-    uncliente.unCliente(id)
+    var id = $('#listaClientes').val();
+    detallefactura.unCliente(id);
 }
+
 var nuevoCliente = () => {
-    var nuevoCliente = new DetalleFactura()
-    nuevoCliente.nuevoCliente()
+    detallefactura.nuevoCliente();
 }
+
 var limpiarcajas = () => {
-    var limpiarcajas = new DetalleFactura()
-    limpiarcajas.limpiarCampos()
+    detallefactura.limpiarCampos();
+}
+
+function cargarProductos() {
+    detallefactura.listaProductos();
+}
+
+var buscarProducto = () => {
+    detallefactura.buscarProducto();
 }
