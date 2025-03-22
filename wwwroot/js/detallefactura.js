@@ -17,89 +17,97 @@
             $("#DireccionCliente").val(cliente.direccion);
             $("#TelefonoCliente").val(cliente.telefono);
             $("#EmailCliente").val(cliente.email);
-        })
+        });
     }
 
     nuevoCliente() {
-        $("#NombreCliente").prop("disabled", false);
-        $("#DireccionCliente").prop("disabled", false);
-        $("#TelefonoCliente").prop("disabled", false);
-        $("#EmailCliente").prop("disabled", false);
+        $("#NombreCliente, #DireccionCliente, #TelefonoCliente, #EmailCliente").prop("disabled", false);
         $("#listaClientes").prop("disabled", false);
         $("#nuevoCliente").val(1);
         $("#cancelar").css("display", "block");
     }
 
     limpiarCampos() {
-        $("#NombreCliente").prop("disabled", true);
-        $("#DireccionCliente").prop("disabled", true);
-        $("#TelefonoCliente").prop("disabled", true);
-        $("#EmailCliente").prop("disabled", true);
+        $("#NombreCliente, #DireccionCliente, #TelefonoCliente, #EmailCliente").val("").prop("disabled", true);
         $("#listaClientes").prop("disabled", false);
         $("#nuevoCliente").val(0);
         $("#cancelar").css("display", "none");
     }
 
     listaProductos() {
-        $.get("../../Productos/listaProductos", (lista) => {
-            let html = `<thead>
-                        <tr><th>#</th><th>Nombre</th><th>Acción</th></tr>
-                    </thead>`;
-            $.each(lista, (index, producto) => {
+        var html = "";
+        $.get("../productos/ListaProductos", (listaproductos) => {
+            $.each(listaproductos, (index, producto) => {
                 html += `<tr>
-                        <td>${index + 1}</td>
-                        <td>${producto.nombreProducto}</td>
-                        <td><button class="btn btn-success" onclick="detallefactura.agregarProducto(${producto.id}, '${producto.nombreProducto}')">Agregar</button></td>
-                     </tr>`;
+                    <td>${index + 1}</td>
+                    <td>${producto.nombreProducto}</td>
+                    <td><input type="number" id="cantidad_${producto.id}" class="form-control" style="width:60px"></td>
+                    <td>${producto.precioVenta.toFixed(2)}</td>
+                    <td>
+                        <button onclick="detallefactura.agregarProducto('${producto.id}', '${producto.nombreProducto}', ${producto.precioVenta})" class="btn btn-outline-success">
+                            <i class="icon-plus"></i>
+                        </button>
+                    </td>
+                </tr>`;
             });
-            $("#tablaBusqueda").html(html);
+            $("#cuerpoproducto").html(html);
         });
     }
 
     buscarProducto() {
-        let nombreProducto = $("#buscador").val();
-        $.get("/Productos/ListaProductos", (data) => {
-            let html = '';
-            let contador = 1;
-            let productosFiltrados = data.filter(p => p.nombreProducto.toLowerCase().includes(nombreProducto.toLowerCase()));
+        let nombreProducto = $("#buscador").val().toLowerCase();
+        $.get("../productos/ListaProductos", (listaproductos) => {
+            let html = "";
+            let productosFiltrados = listaproductos.filter(producto =>
+                producto.nombreProducto.toLowerCase().includes(nombreProducto)
+            );
 
-            productosFiltrados.forEach(producto => {
-                html += `
-                    <tr>
-                        <td>${contador++}</td>
-                        <td>${producto.nombreProducto}</td>
-                        <td><input type="number" min="1" value="1" class="form-control cantidad-producto" data-id="${producto.id}" data-nombre="${producto.nombreProducto}"></td>
-                        <td><input type="number" min="0" value="0" class="form-control precio-producto" data-id="${producto.id}"></td>
-                        <td><button class="btn btn-success" onclick="detallefactura.agregarProducto('${producto.id}', '${producto.nombreProducto}')">Agregar</button></td>
-                    </tr>`;
+            $.each(productosFiltrados, (index, producto) => {
+                html += `<tr>
+                    <td>${index + 1}</td>
+                    <td>${producto.nombreProducto}</td>
+                    <td><input type="number" id="cantidad_${producto.id}" class="form-control" style="width:60px"></td>
+                    <td>${producto.precioVenta.toFixed(2)}</td>
+                    <td>
+                        <button onclick="detallefactura.agregarProducto('${producto.id}', '${producto.nombreProducto}', ${producto.precioVenta})" class="btn btn-outline-success">
+                            <i class="icon-plus"></i>
+                        </button>
+                    </td>
+                </tr>`;
             });
-            $("#resultadoProductos tbody").html(html);
+            $("#cuerpoproducto").html(html);
         });
     }
 
-    agregarProducto(id, nombre) {
-        let cantidad = parseInt($(`.cantidad-producto[data-id='${id}']`).val());
-        let precio = parseFloat($(`.precio-producto[data-id='${id}']`).val());
+    agregarProducto(id, nombre, precio) {
+        let cantidad = parseInt($(`#cantidad_${id}`).val());
+        if (isNaN(cantidad) || cantidad <= 0) {
+            alert("Ingrese una cantidad válida.");
+            return;
+        }
+
         let total = cantidad * precio;
 
         let nuevaFila = `
         <tr data-id="${id}">
-            <td>#</td>
+            <td>${$("#tablaProductos tbody tr").length + 1}</td>
             <td>${nombre}</td>
             <td>${cantidad}</td>
-            <td>${precio}</td>
-            <td>${total}</td>
-            <td><button class="btn btn-danger" onclick="detallefactura.eliminarProducto(${id})">Eliminar</button></td>
+            <td>${precio.toFixed(2)}</td>
+            <td>${total.toFixed(2)}</td>
+            <td>
+                <button onclick="detallefactura.eliminarProducto(${id})" class="btn btn-outline-danger">
+                    <i class="icon-trash"></i>
+                </button>
+            </td>
         </tr>`;
 
         $("#tablaProductos tbody").append(nuevaFila);
-
         this.actualizarTotal();
     }
 
     eliminarProducto(id) {
-        $(`#tablaProductos tbody tr[data-id='${id}']`).remove();
-
+        $(`#tablaProductos tbody tr[data-id="${id}"]`).remove();
         this.actualizarTotal();
     }
 
@@ -109,12 +117,19 @@
             let total = parseFloat($(this).find("td:nth-child(5)").text());
             sumaTotal += total;
         });
-
         $("#totalFactura").text(sumaTotal.toFixed(2));
     }
 }
 
 var detallefactura = new DetalleFactura();
-$().ready(() => {
+
+$(document).ready(() => {
     detallefactura.listaClientes();
+
+    // Permite buscar con Enter
+    $("#buscador").keypress(function (e) {
+        if (e.which == 13) {
+            detallefactura.buscarProducto();
+        }
+    });
 });

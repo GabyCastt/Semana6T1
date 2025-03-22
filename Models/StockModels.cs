@@ -18,6 +18,10 @@ namespace Roles_Estructuras_Control.Models
         [Required(ErrorMessage = "El campo es requerido")]
         [DataType(DataType.Date)]
         public DateOnly FechaRegistro { get; set; }
+
+        public float precioUnitario { get; set; }
+        public float precioVenta { get; set; }
+
         //relaciones
         //con producto
         public int ProductoModelsId { get; set; }

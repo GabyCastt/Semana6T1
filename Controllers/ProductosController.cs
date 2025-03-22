@@ -18,15 +18,24 @@ namespace Roles_Estructuras_Control.Controllers
         {
             _context = context;
         }
+
         [HttpGet]
         public async Task<IActionResult> ListaProductos()
         {
-            var productos = await _context.Productos
-                .Select(p => new { p.ID, p.NombreProducto })
+            var productos = await _context.Stocks
+                .Include(s => s.ProductoModels) 
+                .Select(s => new
+                {
+                    id = s.Id, 
+                    nombreProducto = s.ProductoModels.NombreProducto,  
+                    precioVenta = s.precioVenta  
+                })
                 .ToListAsync();
 
             return Json(productos);
         }
+
+
 
         // GET: Productos
         public async Task<IActionResult> Index()
@@ -34,10 +43,10 @@ namespace Roles_Estructuras_Control.Controllers
             return View(await _context.Productos.ToListAsync());
         }
 
-        public List<ProductoModels> listaProductos()
-        {
-            return _context.Productos.ToList();
-        }
+        // public List<StockModels> listaProductos()
+        //{
+        //return _context.Stocks.Include(pd => pd.ProductoModels).ToList();
+        //}
 
 
         // GET: Productos/Details/5

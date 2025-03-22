@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\views\\detallefactura\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:views\\detallefactura\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\wwwroot\\js\\detallefactura.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:wwwroot\\js\\detallefactura.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\models\\stockmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:models\\stockmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\models\\productomodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:models\\productomodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|c:\\users\\fernando\\source\\repos\\rol_estructura_2\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B6927163-2422-404E-B05C-99558E94DB77}|Roles_Estructuras_Control.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +34,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 391,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Views\\DetalleFactura\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\DetalleFactura\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Views\\DetalleFactura\\Index.cshtml",
+              "RelativeToolTip": "Views\\DetalleFactura\\Index.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-18T21:41:36.556Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -42,52 +63,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "site.js",
-              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\wwwroot\\js\\site.js",
-              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
-              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\wwwroot\\js\\site.js",
-              "RelativeToolTip": "wwwroot\\js\\site.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-19T02:28:51.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAABwAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T22:32:49.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Views\\DetalleFactura\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\DetalleFactura\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Views\\DetalleFactura\\Index.cshtml",
-              "RelativeToolTip": "Views\\DetalleFactura\\Index.cshtml",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAACwAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T21:41:36.556Z",
+              "DocumentIndex": 4,
+              "Title": "ProductoModels.cs",
+              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Models\\ProductoModels.cs",
+              "RelativeDocumentMoniker": "Models\\ProductoModels.cs",
+              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Models\\ProductoModels.cs",
+              "RelativeToolTip": "Models\\ProductoModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T04:51:19.316Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "StockModels.cs",
+              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Models\\StockModels.cs",
+              "RelativeDocumentMoniker": "Models\\StockModels.cs",
+              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Models\\StockModels.cs",
+              "RelativeToolTip": "Models\\StockModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T04:16:18.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "Controllers\\ProductosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T04:14:32.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-19T02:28:51.603Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "detallefactura.js",
               "DocumentMoniker": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\wwwroot\\js\\detallefactura.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\detallefactura.js",
               "ToolTip": "C:\\Users\\Fernando\\source\\repos\\Rol_Estructura_2\\wwwroot\\js\\detallefactura.js",
               "RelativeToolTip": "wwwroot\\js\\detallefactura.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHYAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-03-18T21:45:11.804Z",
               "EditorCaption": ""
